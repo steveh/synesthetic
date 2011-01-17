@@ -7,7 +7,7 @@ Synesthetic::Application.routes.draw do
   get "account" => "account#index", :as => :account
   get "letters" => "letters#index", :as => :letters
   post "letters" => "letters#update", :as => :update_letters
-  get "account/login" => "account#login", :as => :login
+  match "account/login" => "account#login", :as => :login
   get "account/logout" => "account#logout", :as => :logout
   get "texts" => "texts#index", :as => :texts
 
