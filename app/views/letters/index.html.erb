@@ -1,0 +1,13 @@
+<%= link_to "Texts", texts_path %>
+
+<%= form_tag update_letters_path do %>
+
+  <% @letter_map.each do |letter, colour| %>
+    <%= label_tag "letter_#{letter}", letter.upcase %>
+    <%= text_field_tag "letters[#{letter}]", colour, :id => "letter_#{letter}" %>
+    <br />
+  <% end %>
+
+  <%= submit_tag "Update colours" %>
+
+<% end %>
