@@ -17,4 +17,12 @@ $(function () {
       margin: "" + top + "px " + "" + left + "px " + "" + bottom + "px " + "" + right + "px"
     });
   }).trigger(eventName);
+
+  $("#letters .container").each(function (index, container) {
+    var input = $(container).find("input");
+
+    var cwcontainer = $(container).find(".colorwheel");
+
+    var cw = Raphael.colorwheel(cwcontainer[0], 100).input(input[0]);
+});
 });

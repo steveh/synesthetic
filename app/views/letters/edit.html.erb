@@ -1,10 +1,14 @@
 <%= form_tag(letters_path, { :method => :put }) do %>
 
-  <% @letter_map.each do |letter, colour| %>
-    <%= label_tag "letter_#{letter}", letter.upcase %>
-    <%= text_field_tag "letters[#{letter}]", colour, :id => "letter_#{letter}" %>
-    <br />
-  <% end %>
+  <div id="letters">
+    <% @letter_map.each do |letter, colour| %>
+      <div id="letter_<%= letter %>_container" class="container">
+        <h2><%= label_tag "letter_#{letter}", letter.upcase %></h2>
+        <%= text_field_tag "letters[#{letter}]", colour, :id => "letter_#{letter}" %>
+        <div class="colorwheel"></div>
+      </div>
+    <% end %>
+  </div>
 
   <%= submit_tag "Update colours" %>
 
