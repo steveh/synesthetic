@@ -6,6 +6,12 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
     <ul id="nav">
       <% if current_user %>
         <li><%= link_to "Letters", edit_letters_path %></li>
