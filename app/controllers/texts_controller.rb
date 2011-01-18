@@ -9,6 +9,8 @@ class TextsController < ApplicationController
   def show
     @letter_map = current_user.letter_map
 
+    @dimensions = current_user.dimensions
+
     @text = current_user.texts.find(params[:id])
   end
 

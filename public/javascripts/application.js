@@ -4,12 +4,12 @@ $(function () {
   $("#dimensions").delegate("input", "change", function () {
     $(this).trigger(eventName);
   }).bind(eventName, function () {
-    var width = parseInt($(this).find("#width").val()),
-       height = parseInt($(this).find("#height").val()),
-          top = parseInt($(this).find("#top").val()),
-         left = parseInt($(this).find("#left").val()),
-       bottom = parseInt($(this).find("#bottom").val()),
-        right = parseInt($(this).find("#right").val());
+    var width = parseInt($(this).find("#dimension_width").val()),
+       height = parseInt($(this).find("#dimension_height").val()),
+          top = parseInt($(this).find("#dimension_top").val()),
+         left = parseInt($(this).find("#dimension_left").val()),
+       bottom = parseInt($(this).find("#dimension_bottom").val()),
+        right = parseInt($(this).find("#dimension_right").val());
 
     $("#text span").css({
       width: "" + width + "px",

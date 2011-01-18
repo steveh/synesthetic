@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117072210) do
+ActiveRecord::Schema.define(:version => 20110118055605) do
+
+  create_table "dimensions", :force => true do |t|
+    t.integer "user_id"
+    t.integer "width"
+    t.integer "height"
+    t.integer "top"
+    t.integer "left"
+    t.integer "bottom"
+    t.integer "right"
+  end
+
+  add_index "dimensions", ["user_id"], :name => "index_dimensions_on_user_id", :unique => true
 
   create_table "letters", :force => true do |t|
     t.integer "user_id"

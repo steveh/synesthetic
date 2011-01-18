@@ -2,8 +2,7 @@ class AccountsController < ApplicationController
 
   before_filter :require_user, :except => [:new, :create]
 
-  def index
-
+  def show
   end
 
   def new
@@ -12,7 +11,7 @@ class AccountsController < ApplicationController
   def create
     if params[:username].present?
       session[:user_id] = User.find_or_create_by_username(params[:username])
-    
+
       redirect_to account_path
     else
       render :new

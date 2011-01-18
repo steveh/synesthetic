@@ -15,8 +15,11 @@
 </div>
 
 <div style="clear: both">
-<%= form_tag({}, { :id => "dimensions" }) do %>
-  Dimensions: <%= text_field_tag :width, 20 %> width &times; <%= text_field_tag :height, 20 %> height<br />
-  Margin: <%= text_field_tag :top, 10 %> top <%= text_field_tag :left, 5 %> left <%= text_field_tag :bottom, 10 %> bottom <%= text_field_tag :right, 5 %> right<br />
-<% end %>
+  <%= form_for(@dimensions, :url => dimensions_path, :html => { :method => :put, :id => "dimensions" }) do |f| %>
+
+    <%= render :partial => "dimensions/form", :locals => { :f => f } %>
+
+    <%= submit_tag "Update dimensions" %>
+
+  <% end %>
 </div>

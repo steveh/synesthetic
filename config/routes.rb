@@ -9,10 +9,10 @@ Synesthetic::Application.routes.draw do
 
   resource :letters, :only => [:edit, :update]
 
-  resource :dimensions, :only => [:edit, :update]
+  resource :dimensions, :only => [:update]
 
   resources :texts, :except => :destroy
 
-  root :to => "account#index"
+  root :to => "accounts#show"
 
 end

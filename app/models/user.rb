@@ -2,6 +2,11 @@ class User < ActiveRecord::Base
 
   has_many :letters
   has_many :texts
+  has_one :dimension
+
+  def dimensions
+    dimension || Dimension.default(:user => self)
+  end
 
   validates_presence_of :username
 
