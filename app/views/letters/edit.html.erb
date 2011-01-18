@@ -1,4 +1,4 @@
-<%= form_tag update_letters_path do %>
+<%= form_tag(letters_path, { :method => :put }) do %>
 
   <% @letter_map.each do |letter, colour| %>
     <%= label_tag "letter_#{letter}", letter.upcase %>

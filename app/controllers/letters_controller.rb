@@ -1,9 +1,9 @@
 class LettersController < ApplicationController
 
-  def index
+  def edit
     @letter_map = current_user.letter_map
   end
-  
+
   def update
     current_user.letter_map.each do |letter, colour|
       if params[:letters][letter].present?
@@ -11,8 +11,10 @@ class LettersController < ApplicationController
         obj.update_attribute(:colour, params[:letters][letter])
       end
     end
-    
-    redirect_to letters_path
+
+    flash[:notice] = "Letters updated"
+
+    redirect_to edit_letters_path
   end
 
 end

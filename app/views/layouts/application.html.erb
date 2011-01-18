@@ -8,7 +8,7 @@
   <body>
     <ul id="nav">
       <% if current_user %>
-        <li><%= link_to "Letters", letters_path %></li>
+        <li><%= link_to "Letters", edit_letters_path %></li>
         <li><%= link_to "Texts", texts_path %></li>
         <li><%= link_to "Log out", logout_path %></li>
       <% else %>

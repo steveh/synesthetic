@@ -1,20 +1,25 @@
-class AccountController < ApplicationController
+class AccountsController < ApplicationController
 
-  before_filter :require_user, :except => [:login]
+  before_filter :require_user, :except => [:new, :create]
 
   def index
 
   end
 
-  def login
+  def new
+  end
+
+  def create
     if params[:username].present?
       session[:user_id] = User.find_or_create_by_username(params[:username])
-
+    
       redirect_to account_path
+    else
+      render :new
     end
   end
 
-  def logout
+  def destroy
     session[:user_id] = nil
 
     redirect_to login_path

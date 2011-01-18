@@ -1,53 +1,17 @@
 Synesthetic::Application.routes.draw do
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  resource :account, :only => [:show]
+  scope "account" do
+    get :login, :as => :login, :to => "accounts#new"
+    post :login, :to => "accounts#create"
+    get :logout, :as => :logout, :to => "accounts#destroy"
+  end
 
-  get "letters" => "letters#index", :as => :letters
-  post "letters" => "letters#update", :as => :update_letters
+  resource :letters, :only => [:edit, :update]
 
-  get "account" => "account#index", :as => :account
-  match "account/login" => "account#login", :as => :login
-  get "account/logout" => "account#logout", :as => :logout
+  resource :dimensions, :only => [:edit, :update]
 
-  resources :texts
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  resources :texts, :except => :destroy
 
   root :to => "account#index"
 
