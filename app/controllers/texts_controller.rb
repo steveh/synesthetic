@@ -1,19 +1,63 @@
 class TextsController < ApplicationController
-  
-  def index
-    original = <<-EOF
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-EOF
 
+  def index
+    @texts = current_user.texts
+
+    @default_text = Text.default
+  end
+
+  def show
     @letter_map = current_user.letter_map
 
-    @text = original.each_char.collect do |char|
-      if char =~ /[a-zA-Z]/
-        ('<span class="letter_%s">&nbsp;</span>' % char.downcase)
-      else
-        ('<span class="other">%s</span>' % char)
-      end
-    end.join('').html_safe
+    @text = current_user.texts.find(params[:id])
   end
-  
+
+  def new
+    @text = current_user.texts.new
+
+    @text.text = Text.default.text
+  end
+
+  def edit
+    @text = current_user.texts.find(params[:id])
+  end
+
+  def create
+    @text = current_user.texts.new
+    @text.attributes = params[:text]
+
+    if @text.save
+      flash[:notice] = "Text created"
+      redirect_to @text
+    else
+      flash[:alert] = "Unable to create text"
+      render :new
+    end
+  end
+
+  def update
+    @text = current_user.texts.find(params[:id])
+    @text.attributes = params[:text]
+
+    if @text.save
+      flash[:notice] = "Text updated"
+      redirect_to @text
+    else
+      flash[:alert] = "Unable to update text"
+      render :edit
+    end
+  end
+
+  def destroy
+    @text = current_user.texts.find(params[:id])
+
+    if @text.destroy
+      flash[:notice] = "Text deleted"
+      redirect_to texts_path
+    else
+      flash[:alert] = "Unable to delete text"
+      redirect_to texts_path
+    end
+  end
+
 end

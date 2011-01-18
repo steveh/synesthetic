@@ -6,6 +6,15 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
+    <ul id="nav">
+      <% if current_user %>
+        <li><%= link_to "Letters", letters_path %></li>
+        <li><%= link_to "Texts", texts_path %></li>
+        <li><%= link_to "Log out", logout_path %></li>
+      <% else %>
+        <li><%= link_to "Log in", login_path %></li>
+      <% end %>
+    </ul>
     <%= yield %>
     <%= javascript_include_tag "jquery-1.4.4.min.js" %>
     <%= javascript_include_tag "application.js" %>

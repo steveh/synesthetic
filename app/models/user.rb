@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
-  
+
   has_many :letters
   has_many :texts
-  
+
   validates_presence_of :username
-  
+
   LETTERS = "a".."z"
-  
+
   def random_set
     Hash[*LETTERS.zip(Colour.random_set).flatten]
   end
-  
+
   def letter_map
     map = random_set
     letters.each do |letter|
@@ -18,5 +18,5 @@ class User < ActiveRecord::Base
     end
     map
   end
-  
+
 end

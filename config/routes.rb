@@ -3,13 +3,15 @@ Synesthetic::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  
-  get "account" => "account#index", :as => :account
+
   get "letters" => "letters#index", :as => :letters
   post "letters" => "letters#update", :as => :update_letters
+
+  get "account" => "account#index", :as => :account
   match "account/login" => "account#login", :as => :login
   get "account/logout" => "account#logout", :as => :logout
-  get "texts" => "texts#index", :as => :texts
+
+  resources :texts
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -48,11 +50,5 @@ Synesthetic::Application.routes.draw do
   #   end
 
   root :to => "account#index"
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
 
 end

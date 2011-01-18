@@ -1,0 +1,7 @@
+<%= form_for @text do |f| %>
+
+  <%= render :partial => "form", :locals => { :f => f } %>
+
+  <%= submit_tag "Create text" %>
+
+<% end %>

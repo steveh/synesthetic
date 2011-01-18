@@ -1,0 +1,22 @@
+<style type="text/css">
+#dimensions input { width: 40px; }
+#text span { float: left; }
+<% @letter_map.each do |letter, colour| %>
+#text .letter_<%= letter %> { background-color: <%= colour %>; }
+<% end %>
+</style>
+
+<div id="text">
+<%= text_to_classes(@text.text) %>
+</div>
+
+<div style="clear: both">
+  <%= link_to("Edit text", [:edit, @text]) unless @text.new_record? %>
+</div>
+
+<div style="clear: both">
+<%= form_tag({}, { :id => "dimensions" }) do %>
+  Dimensions: <%= text_field_tag :width, 20 %> width &times; <%= text_field_tag :height, 20 %> height<br />
+  Margin: <%= text_field_tag :top, 10 %> top <%= text_field_tag :left, 5 %> left <%= text_field_tag :bottom, 10 %> bottom <%= text_field_tag :right, 5 %> right<br />
+<% end %>
+</div>

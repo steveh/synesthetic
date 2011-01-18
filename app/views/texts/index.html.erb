@@ -1,20 +1,9 @@
-<%= link_to "Letters", letters_path %>
+<ul>
+  <li><%= link_to "New text", new_text_path %></li>
+</ul>
 
-<div id="text">
-<%= @text %>
-</div>
-
-<style type="text/css">
-#dimensions input { width: 40px; }
-#text span { float: left; }
-<% @letter_map.each do |letter, colour| %>
-#text .letter_<%= letter %> { background-color: <%= colour %>; }
-<% end %>
-</style>
-
-<div style="clear: both">
-<%= form_tag({}, {  :id => "dimensions" }) do %>
-  Dimensions: <%= text_field_tag :width, 20 %> width &times; <%= text_field_tag :height, 20 %> height<br />
-  Margin: <%= text_field_tag :top, 10 %> top <%= text_field_tag :left, 5 %> left <%= text_field_tag :bottom, 10 %> bottom <%= text_field_tag :right, 5 %> right<br />
-<% end %>
-</div>
+<ul>
+  <% @texts.each do |text| %>
+    <li><%= link_to truncate(text.text, :length => 30), text %></li>
+  <% end %>
+</ul>
