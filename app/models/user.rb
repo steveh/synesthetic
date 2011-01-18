@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :letters
   has_many :texts
+
   has_one :dimension
 
   def dimensions
